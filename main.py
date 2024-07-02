@@ -4,7 +4,7 @@ import calendar
 app = Flask(__name__, static_folder="Remyc0des.github.io")
 days = 0
 last_updated = None
-index = '../index.html'
+index = 'index.html'
 @app.route("/")
 def home():
     global days, last_updated, index
@@ -21,7 +21,7 @@ def home():
 
         last_updated = current_date
         print(last_updated)
-    return send_from_directory(index, day_num=days)
+    return send_from_directory(path=index, day_num=days)
 
 if __name__ == "__main__":
   app.run()
