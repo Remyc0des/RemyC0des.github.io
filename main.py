@@ -4,11 +4,11 @@ import calendar
 import os
 
 
-templateindex = "/Remyc0des.github.io"
-app = Flask(__name__, templateindex )
+
+app = Flask(__name__,template_folder=os.path.abspath(os.path.dirname(__file__)))
 days = 0
 last_updated = None
-index = 'index.html'
+
 @app.route("/")
 def home():
     global days, last_updated, index
@@ -25,7 +25,10 @@ def home():
 
         last_updated = current_date
         print(last_updated)
-    return render_template("index.html",day_num=days)
+    return render_template("index.html", day_num=days)
+#@app.route('/index.html')
+#def serve_index():
+    #return send_from_directory('', 'index.html')
 
 if __name__ == "__main__":
-  app.run()
+  app.run(debug=True)
