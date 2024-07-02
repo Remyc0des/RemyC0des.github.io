@@ -1,12 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import datetime 
 import calendar
-app = Flask(__name__)
+app = Flask(__name__, static_folder="Remyc0des.github.io")
 days = 0
 last_updated = None
+index = '../index.html'
 @app.route("/")
 def home():
-    global days, last_updated
+    global days, last_updated, index
     start_date = datetime.datetime(2024,7,1)
     current_date =  datetime.datetime.now()
     x = current_date.weekday() + 1
@@ -20,7 +21,7 @@ def home():
 
         last_updated = current_date
         print(last_updated)
-    return render_template('index.html', day_num=days)
+    return send_from_directory(index, day_num=days)
 
 if __name__ == "__main__":
   app.run()
