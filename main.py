@@ -8,7 +8,7 @@ import os
 app = Flask(__name__,template_folder=os.path.abspath(os.path.dirname(__file__)))
 days = 0
 last_updated = None
-
+random = 0
 @app.route("/")
 def home():
     global days, last_updated, index
